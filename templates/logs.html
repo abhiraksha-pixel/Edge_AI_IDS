@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Intrusion Logs - Edge-AI IoT IDS</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="dashboard">
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                AI
+            </div>
+
+            <div>
+
+                <h2>EDGE-AI</h2>
+
+                <span>IoT SECURITY</span>
+
+            </div>
+
+        </div>
+
+
+
+        <nav>
+
+            <a href="/">
+                Dashboard
+            </a>
+
+            <a href="/monitoring">
+                Monitoring
+            </a>
+
+            <a href="/devices">
+                IoT Devices
+            </a>
+
+            <a href="/logs"
+               class="active">
+                Intrusion Logs
+            </a>
+
+            <a href="/analytics">
+                Analytics
+            </a>
+
+            <a href="/model">
+                Model Performance
+            </a>
+
+        </nav>
+
+
+
+        <!-- SYSTEM STATUS -->
+
+        <div class="system-box">
+
+            <h4>
+                SYSTEM STATUS
+            </h4>
+
+
+            <p>
+
+                <span class="status-dot"></span>
+
+                Edge Gateway
+
+                <strong>
+                    ACTIVE
+                </strong>
+
+            </p>
+
+
+            <p>
+
+                <span class="status-dot"></span>
+
+                ML Model
+
+                <strong>
+                    LOADED
+                </strong>
+
+            </p>
+
+
+            <p>
+
+                <span class="status-dot"></span>
+
+                Alert Logging
+
+                <strong>
+                    ACTIVE
+                </strong>
+
+            </p>
+
+        </div>
+
+
+
+        <div class="sidebar-bottom">
+
+            <p>
+                Edge-AI IDS
+            </p>
+
+            <small>
+                IoT Network Security
+            </small>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Intrusion Logs
+                </h1>
+
+                <p>
+                    Recorded attack events detected by the Edge-AI gateway
+                </p>
+
+            </div>
+
+
+            <div class="gateway-status">
+
+                <span class="status-dot"></span>
+
+                Logging Active
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================================
+             SUMMARY
+        ========================================== -->
+
+        <section class="stats">
+
+
+            <div class="stat-card red">
+
+                <div>
+
+                    <p>
+                        TOTAL INTRUSIONS
+                    </p>
+
+                    <h2>
+                        {{ alerts|length }}
+                    </h2>
+
+                    <span>
+                        Recorded attack events
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card blue">
+
+                <div>
+
+                    <p>
+                        SOURCE
+                    </p>
+
+                    <h2>
+                        ESP32
+                    </h2>
+
+                    <span>
+                        Simulated IoT gateway
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card purple">
+
+                <div>
+
+                    <p>
+                        DETECTION MODEL
+                    </p>
+
+                    <h2>
+                        RF
+                    </h2>
+
+                    <span>
+                        Random Forest
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card green">
+
+                <div>
+
+                    <p>
+                        LOGGING
+                    </p>
+
+                    <h2>
+                        ACTIVE
+                    </h2>
+
+                    <span>
+                        Intrusion events recorded
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             LOG INFORMATION
+        ========================================== -->
+
+        <section class="panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Intrusion Detection Records
+                    </h3>
+
+                    <p>
+                        Attack events generated by the simulated IoT traffic and detected by the Edge-AI model
+                    </p>
+
+                </div>
+
+
+                <span class="alert-count">
+                    {{ alerts|length }} alerts
+                </span>
+
+            </div>
+
+
+
+            {% if alerts %}
+
+
+            <!-- =========================================
+                 LOG TABLE
+            ========================================== -->
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                TIME
+                            </th>
+
+                            <th>
+                                DEVICE
+                            </th>
+
+                            <th>
+                                PACKET SIZE
+                            </th>
+
+                            <th>
+                                PACKETS/SEC
+                            </th>
+
+                            <th>
+                                CONNECTIONS
+                            </th>
+
+                            <th>
+                                DURATION
+                            </th>
+
+                            <th>
+                                PROTOCOL
+                            </th>
+
+                            <th>
+                                CONFIDENCE
+                            </th>
+
+                            <th>
+                                STATUS
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                    {% for alert in alerts %}
+
+                        <tr>
+
+
+                            <!-- TIME -->
+
+                            <td>
+                                {{ alert.timestamp }}
+                            </td>
+
+
+
+                            <!-- DEVICE -->
+
+                            <td>
+
+                                <strong>
+                                    {{ alert.device }}
+                                </strong>
+
+                            </td>
+
+
+
+                            <!-- PACKET SIZE -->
+
+                            <td>
+                                {{ alert.packet_size }} bytes
+                            </td>
+
+
+
+                            <!-- PACKETS PER SECOND -->
+
+                            <td>
+                                {{ alert.packets_per_second }}
+                            </td>
+
+
+
+                            <!-- CONNECTIONS -->
+
+                            <td>
+                                {{ alert.connections }}
+                            </td>
+
+
+
+                            <!-- DURATION -->
+
+                            <td>
+                                {{ alert.duration }} sec
+                            </td>
+
+
+
+                            <!-- PROTOCOL -->
+
+                            <td>
+
+                                <span class="protocol">
+                                    {{ alert.protocol }}
+                                </span>
+
+                            </td>
+
+
+
+                            <!-- CONFIDENCE -->
+
+                            <td>
+                                {{ alert.confidence }}%
+                            </td>
+
+
+
+                            <!-- STATUS -->
+
+                            <td>
+
+                                <span class="attack-status">
+                                    ATTACK
+                                </span>
+
+                            </td>
+
+
+                        </tr>
+
+                    {% endfor %}
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            {% else %}
+
+
+            <!-- =========================================
+                 NO ALERTS
+            ========================================== -->
+
+            <div style="
+                padding: 50px 20px;
+                text-align: center;
+            ">
+
+                <h3>
+                    No Intrusions Detected
+                </h3>
+
+                <p style="
+                    color: #64748b;
+                    margin-top: 8px;
+                ">
+                    The intrusion log is currently empty.
+                </p>
+
+            </div>
+
+
+            {% endif %}
+
+        </section>
+
+
+
+        <!-- =========================================
+             ATTACK CHARACTERISTICS
+        ========================================== -->
+
+        <section class="content-grid">
+
+
+            <!-- TRAFFIC CHARACTERISTICS -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Attack Traffic Characteristics
+                        </h3>
+
+                        <p>
+                            Network features recorded during detected attack events
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div style="padding: 5px 0;">
+
+
+                    <div style="
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <span style="
+                            display: block;
+                            font-size: 11px;
+                            color: #94a3b8;
+                            margin-bottom: 6px;
+                        ">
+                            PACKET SIZE
+                        </span>
+
+                        <strong>
+                            Elevated traffic size
+                        </strong>
+
+                        <p style="
+                            margin: 5px 0 0 0;
+                            font-size: 13px;
+                            color: #64748b;
+                        ">
+                            Larger simulated packets are used in attack conditions.
+                        </p>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <span style="
+                            display: block;
+                            font-size: 11px;
+                            color: #94a3b8;
+                            margin-bottom: 6px;
+                        ">
+                            PACKETS PER SECOND
+                        </span>
+
+                        <strong>
+                            High traffic rate
+                        </strong>
+
+                        <p style="
+                            margin: 5px 0 0 0;
+                            font-size: 13px;
+                            color: #64748b;
+                        ">
+                            Attack simulations generate a higher packet rate.
+                        </p>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <span style="
+                            display: block;
+                            font-size: 11px;
+                            color: #94a3b8;
+                            margin-bottom: 6px;
+                        ">
+                            CONNECTIONS
+                        </span>
+
+                        <strong>
+                            Increased connections
+                        </strong>
+
+                        <p style="
+                            margin: 5px 0 0 0;
+                            font-size: 13px;
+                            color: #64748b;
+                        ">
+                            Attack traffic is represented using more simultaneous connections.
+                        </p>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 15px 0;
+                    ">
+
+                        <span style="
+                            display: block;
+                            font-size: 11px;
+                            color: #94a3b8;
+                            margin-bottom: 6px;
+                        ">
+                            CLASSIFICATION
+                        </span>
+
+                        <strong>
+                            ATTACK
+                        </strong>
+
+                        <p style="
+                            margin: 5px 0 0 0;
+                            font-size: 13px;
+                            color: #64748b;
+                        ">
+                            The Random Forest model classified the event as an intrusion.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- LOGGING PIPELINE -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Intrusion Logging Pipeline
+                        </h3>
+
+                        <p>
+                            How detected attacks are recorded
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div style="padding: 5px 0;">
+
+
+                    <div style="
+                        padding: 16px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <strong>
+                            1. IoT Telemetry
+                        </strong>
+
+                        <p style="
+                            margin: 5px 0 0 0;
+                            font-size: 13px;
+                            color: #64748b;
+                        ">
+                            ESP32 publishes simulated telemetry through MQTT.
+                        </p>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 16px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <strong>
+                            2. Edge-AI Analysis
+                        </strong>
+
+                        <p style="
+                            margin: 5px 0 0 0;
+                            font-size: 13px;
+                            color: #64748b;
+                        ">
+                            Python receives the message and processes the data.
+                        </p>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 16px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <strong>
+                            3. ML Classification
+                        </strong>
+
+                        <p style="
+                            margin: 5px 0 0 0;
+                            font-size: 13px;
+                            color: #64748b;
+                        ">
+                            Random Forest classifies the simulated traffic.
+                        </p>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 16px 0;
+                    ">
+
+                        <strong>
+                            4. Intrusion Log
+                        </strong>
+
+                        <p style="
+                            margin: 5px 0 0 0;
+                            font-size: 13px;
+                            color: #64748b;
+                        ">
+                            Detected attack events are stored in the intrusion log.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             IMPORTANT PROJECT NOTE
+        ========================================== -->
+
+        <section class="panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Log Interpretation
+                    </h3>
+
+                    <p>
+                        Meaning of the recorded intrusion events
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div style="
+                padding: 5px 0;
+                line-height: 1.8;
+            ">
+
+                <p>
+                    The events shown on this page represent simulated
+                    intrusion conditions generated by the project.
+                </p>
+
+
+                <p>
+                    The ESP32 telemetry is transmitted through MQTT to
+                    the Python Edge-AI gateway, where the received
+                    information is converted into the feature format
+                    expected by the trained Random Forest model.
+                </p>
+
+
+                <p>
+                    When the model classifies the simulated traffic as
+                    ATTACK, the event is written to the intrusion log.
+                </p>
+
+
+                <p>
+                    The packet size, packet rate, connections and duration
+                    shown here are the network features used by the
+                    simulation and classification pipeline.
+                </p>
+
+
+                <p>
+                    These logs represent a software simulation and should
+                    not be interpreted as measurements of attacks on a
+                    real IoT network.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             FOOTER
+        ========================================== -->
+
+        <footer>
+
+            <span>
+                Edge-AI Based Intrusion Detection System for IoT Networks
+            </span>
+
+
+            <span>
+                ESP32 Simulation
+                &nbsp; | &nbsp;
+                MQTT
+                &nbsp; | &nbsp;
+                Random Forest
+                &nbsp; | &nbsp;
+                Logging: ACTIVE
+            </span>
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

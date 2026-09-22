@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Model Performance - Edge-AI IoT IDS</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="dashboard">
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                AI
+            </div>
+
+            <div>
+
+                <h2>EDGE-AI</h2>
+
+                <span>IoT SECURITY</span>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="/">
+                Dashboard
+            </a>
+
+            <a href="/monitoring">
+                Monitoring
+            </a>
+
+            <a href="/devices">
+                IoT Devices
+            </a>
+
+            <a href="/logs">
+                Intrusion Logs
+            </a>
+
+            <a href="/analytics">
+                Analytics
+            </a>
+
+            <a href="/model" class="active">
+                Model Performance
+            </a>
+
+        </nav>
+
+
+        <!-- SYSTEM STATUS -->
+
+        <div class="system-box">
+
+            <h4>SYSTEM STATUS</h4>
+
+            <p>
+
+                <span class="status-dot"></span>
+
+                Edge Gateway
+
+                <strong>
+                    ACTIVE
+                </strong>
+
+            </p>
+
+
+            <p>
+
+                <span class="status-dot"></span>
+
+                ML Model
+
+                <strong>
+                    {{ model_status }}
+                </strong>
+
+            </p>
+
+
+            <p>
+
+                <span class="status-dot"></span>
+
+                Alert Logging
+
+                <strong>
+                    ACTIVE
+                </strong>
+
+            </p>
+
+        </div>
+
+
+        <div class="sidebar-bottom">
+
+            <p>
+                Edge-AI IDS
+            </p>
+
+            <small>
+                IoT Network Security
+            </small>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Model Performance
+                </h1>
+
+                <p>
+                    Random Forest model used for simulated IoT traffic classification
+                </p>
+
+            </div>
+
+
+            <div class="gateway-status">
+
+                <span class="status-dot"></span>
+
+                Model {{ model_status }}
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================================
+             MODEL SUMMARY
+        ========================================== -->
+
+        <section class="stats">
+
+
+            <!-- MODEL -->
+
+            <div class="stat-card blue">
+
+                <div>
+
+                    <p>
+                        MODEL
+                    </p>
+
+                    <h2>
+                        {{ model_name }}
+                    </h2>
+
+                    <span>
+                        Machine learning classifier
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TREES -->
+
+            <div class="stat-card green">
+
+                <div>
+
+                    <p>
+                        DECISION TREES
+                    </p>
+
+                    <h2>
+                        {{ number_of_trees }}
+                    </h2>
+
+                    <span>
+                        Trees in Random Forest
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FEATURES -->
+
+            <div class="stat-card purple">
+
+                <div>
+
+                    <p>
+                        INPUT FEATURES
+                    </p>
+
+                    <h2>
+                        {{ number_of_features }}
+                    </h2>
+
+                    <span>
+                        Features used by model
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- STATUS -->
+
+            <div class="stat-card red">
+
+                <div>
+
+                    <p>
+                        MODEL STATUS
+                    </p>
+
+                    <h2>
+                        {{ model_status }}
+                    </h2>
+
+                    <span>
+                        Loaded by Edge-AI gateway
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             MODEL INFORMATION
+        ========================================== -->
+
+        <section class="content-grid">
+
+
+            <!-- MODEL DETAILS -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Model Information
+                        </h3>
+
+                        <p>
+                            Configuration of the deployed classifier
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div style="padding: 5px 0;">
+
+
+                    <div style="
+                        padding: 17px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <span style="
+                            display: block;
+                            font-size: 11px;
+                            color: #94a3b8;
+                            margin-bottom: 6px;
+                        ">
+                            ALGORITHM
+                        </span>
+
+                        <strong>
+                            {{ model_name }}
+                        </strong>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 17px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <span style="
+                            display: block;
+                            font-size: 11px;
+                            color: #94a3b8;
+                            margin-bottom: 6px;
+                        ">
+                            NUMBER OF TREES
+                        </span>
+
+                        <strong>
+                            {{ number_of_trees }}
+                        </strong>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 17px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <span style="
+                            display: block;
+                            font-size: 11px;
+                            color: #94a3b8;
+                            margin-bottom: 6px;
+                        ">
+                            INPUT FEATURES
+                        </span>
+
+                        <strong>
+                            {{ number_of_features }}
+                        </strong>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 17px 0;
+                    ">
+
+                        <span style="
+                            display: block;
+                            font-size: 11px;
+                            color: #94a3b8;
+                            margin-bottom: 6px;
+                        ">
+                            DEPLOYMENT
+                        </span>
+
+                        <strong>
+                            Edge Gateway
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MODEL PIPELINE -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            AI Detection Pipeline
+                        </h3>
+
+                        <p>
+                            How the model is used by the Edge-AI gateway
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div style="padding: 5px 0;">
+
+
+                    <div style="
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <strong>
+                            1. IoT Telemetry
+                        </strong>
+
+                        <p style="
+                            margin: 5px 0 0 0;
+                            font-size: 13px;
+                            color: #64748b;
+                        ">
+                            ESP32 publishes simulated IoT data through MQTT.
+                        </p>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <strong>
+                            2. Feature Conversion
+                        </strong>
+
+                        <p style="
+                            margin: 5px 0 0 0;
+                            font-size: 13px;
+                            color: #64748b;
+                        ">
+                            The Edge Gateway converts the received telemetry
+                            into the model's expected feature format.
+                        </p>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <strong>
+                            3. Random Forest
+                        </strong>
+
+                        <p style="
+                            margin: 5px 0 0 0;
+                            font-size: 13px;
+                            color: #64748b;
+                        ">
+                            The trained classifier analyzes the simulated
+                            traffic features.
+                        </p>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 15px 0;
+                    ">
+
+                        <strong>
+                            4. Detection Result
+                        </strong>
+
+                        <p style="
+                            margin: 5px 0 0 0;
+                            font-size: 13px;
+                            color: #64748b;
+                        ">
+                            The model produces a NORMAL or ATTACK classification.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             MODEL FEATURES
+        ========================================== -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Model Input Features
+                    </h3>
+
+                    <p>
+                        Features stored in the trained Random Forest model
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            {% if features %}
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                #
+                            </th>
+
+                            <th>
+                                FEATURE
+                            </th>
+
+                            <th>
+                                CATEGORY
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                    {% for feature in features %}
+
+                        <tr>
+
+                            <td>
+                                {{ loop.index }}
+                            </td>
+
+
+                            <td>
+
+                                <strong>
+                                    {{ feature }}
+                                </strong>
+
+                            </td>
+
+
+                            <td>
+
+                                {% if feature.startswith("device_") %}
+
+                                    Device
+
+                                {% elif feature.startswith("protocol_") %}
+
+                                    Protocol
+
+                                {% elif feature == "packet_size" %}
+
+                                    Network
+
+                                {% elif feature == "packets_per_second" %}
+
+                                    Network
+
+                                {% elif feature == "connections" %}
+
+                                    Network
+
+                                {% elif feature == "duration" %}
+
+                                    Network
+
+                                {% else %}
+
+                                    Feature
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            {% else %}
+
+            <div style="
+                padding: 40px;
+                text-align: center;
+            ">
+
+                <p>
+                    No model features are available.
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </section>
+
+
+
+        <!-- =========================================
+             CLASSIFICATION
+        ========================================== -->
+
+        <section class="content-grid">
+
+
+            <!-- NORMAL -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            NORMAL Classification
+                        </h3>
+
+                        <p>
+                            Normal traffic condition
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div style="
+                    padding: 5px 0;
+                    line-height: 1.8;
+                ">
+
+                    <p>
+                        The model classifies traffic as NORMAL when the
+                        simulated network features correspond to the
+                        normal traffic patterns used during training.
+                    </p>
+
+                    <p>
+                        The result is recorded in the traffic log for
+                        subsequent analysis.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ATTACK -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            ATTACK Classification
+                        </h3>
+
+                        <p>
+                            Simulated anomalous traffic condition
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div style="
+                    padding: 5px 0;
+                    line-height: 1.8;
+                ">
+
+                    <p>
+                        The model classifies traffic as ATTACK when the
+                        simulated network features correspond to the
+                        attack patterns used during training.
+                    </p>
+
+                    <p>
+                        Detected attack events are written to the
+                        intrusion log and displayed in the dashboard.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             PERFORMANCE METRICS NOTE
+        ========================================== -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Model Evaluation
+                    </h3>
+
+                    <p>
+                        Interpretation of model performance
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div style="
+                padding: 5px 0;
+                line-height: 1.8;
+            ">
+
+                <p>
+                    The Random Forest model was trained using the project's
+                    simulated IoT traffic dataset.
+                </p>
+
+                <p>
+                    The training dataset contains simulated NORMAL and
+                    ATTACK traffic generated using predefined feature
+                    ranges.
+                </p>
+
+                <p>
+                    Performance metrics such as accuracy, precision,
+                    recall and F1-score should be reported from the
+                    recorded test-set evaluation rather than inferred
+                    from the live prediction confidence shown by the
+                    dashboard.
+                </p>
+
+                <p>
+                    The current dashboard displays the model configuration
+                    and deployed model information. It does not treat
+                    prediction confidence as model accuracy.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             IMPORTANT PROJECT LIMITATION
+        ========================================== -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Important Project Note
+                    </h3>
+
+                    <p>
+                        Scope of the current model implementation
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div style="
+                padding: 5px 0;
+                line-height: 1.8;
+            ">
+
+                <p>
+                    This project uses simulated IoT traffic for
+                    demonstration and experimentation.
+                </p>
+
+                <p>
+                    The Wokwi ESP32 telemetry is converted into the
+                    network-feature format expected by the trained
+                    Random Forest model.
+                </p>
+
+                <p>
+                    This conversion is a simulation adapter. The current
+                    implementation does not perform direct packet capture
+                    or deep packet inspection of a real IoT network.
+                </p>
+
+                <p>
+                    Therefore, model results shown by this project should
+                    be interpreted within the scope of the simulated
+                    dataset and experimental environment.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             FOOTER
+        ========================================== -->
+
+        <footer>
+
+            <span>
+                Edge-AI Based Intrusion Detection System for IoT Networks
+            </span>
+
+
+            <span>
+                ESP32 Simulation
+                &nbsp; | &nbsp;
+                MQTT
+                &nbsp; | &nbsp;
+                Random Forest
+                &nbsp; | &nbsp;
+                Model: {{ model_status }}
+            </span>
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

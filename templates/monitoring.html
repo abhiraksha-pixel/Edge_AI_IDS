@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Monitoring - Edge-AI IoT IDS</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="dashboard">
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                AI
+            </div>
+
+            <div>
+
+                <h2>EDGE-AI</h2>
+
+                <span>IoT SECURITY</span>
+
+            </div>
+
+        </div>
+
+
+
+        <nav>
+
+            <a href="/">
+                Dashboard
+            </a>
+
+            <a href="/monitoring"
+               class="active">
+                Monitoring
+            </a>
+
+            <a href="/devices">
+                IoT Devices
+            </a>
+
+            <a href="/logs">
+                Intrusion Logs
+            </a>
+
+            <a href="/analytics">
+                Analytics
+            </a>
+
+            <a href="/model">
+                Model Performance
+            </a>
+
+        </nav>
+
+
+
+        <!-- SYSTEM STATUS -->
+
+        <div class="system-box">
+
+            <h4>
+                SYSTEM STATUS
+            </h4>
+
+
+            <p>
+
+                <span class="status-dot"></span>
+
+                Edge Gateway
+
+                <strong>
+                    ACTIVE
+                </strong>
+
+            </p>
+
+
+            <p>
+
+                <span class="status-dot"></span>
+
+                ML Model
+
+                <strong>
+                    LOADED
+                </strong>
+
+            </p>
+
+
+            <p>
+
+                <span class="status-dot"></span>
+
+                Alert Logging
+
+                <strong>
+                    ACTIVE
+                </strong>
+
+            </p>
+
+        </div>
+
+
+
+        <div class="sidebar-bottom">
+
+            <p>
+                Edge-AI IDS
+            </p>
+
+            <small>
+                IoT Network Security
+            </small>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Real-Time Monitoring
+                </h1>
+
+                <p>
+                    Live monitoring of the simulated ESP32 IoT Gateway
+                </p>
+
+            </div>
+
+
+            <div class="gateway-status">
+
+                <span class="status-dot"></span>
+
+                Monitoring Active
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================================
+             MONITORING STATUS CARDS
+        ========================================== -->
+
+        <section class="stats">
+
+
+            <div class="stat-card blue">
+
+                <div>
+
+                    <p>
+                        ESP32 GATEWAY
+                    </p>
+
+                    <h2>
+                        ACTIVE
+                    </h2>
+
+                    <span>
+                        Wokwi simulation running
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card green">
+
+                <div>
+
+                    <p>
+                        MQTT CONNECTION
+                    </p>
+
+                    <h2>
+                        CONNECTED
+                    </h2>
+
+                    <span>
+                        IoT telemetry channel
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card purple">
+
+                <div>
+
+                    <p>
+                        AI MODEL
+                    </p>
+
+                    <h2>
+                        LOADED
+                    </h2>
+
+                    <span>
+                        Random Forest classifier
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card red">
+
+                <div>
+
+                    <p>
+                        THREAT STATUS
+                    </p>
+
+
+                    {% if total_attacks > 0 %}
+
+                        <h2>
+                            ALERT
+                        </h2>
+
+                        <span>
+                            Intrusions detected
+                        </span>
+
+                    {% else %}
+
+                        <h2>
+                            NORMAL
+                        </h2>
+
+                        <span>
+                            No intrusions detected
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             SYSTEM PIPELINE
+        ========================================== -->
+
+        <section class="panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Edge-AI Monitoring Pipeline
+                    </h3>
+
+                    <p>
+                        Data flow through the simulated IoT intrusion detection system
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 15px;
+                padding: 25px 0;
+            ">
+
+
+                <!-- ESP32 -->
+
+                <div style="
+                    border: 1px solid #e5e7eb;
+                    border-radius: 10px;
+                    padding: 20px;
+                    text-align: center;
+                    background: #f8fafc;
+                ">
+
+                    <div style="
+                        font-size: 13px;
+                        font-weight: 700;
+                        color: #64748b;
+                        margin-bottom: 10px;
+                    ">
+                        STEP 1
+                    </div>
+
+                    <h3 style="
+                        margin: 0 0 8px 0;
+                    ">
+                        ESP32
+                    </h3>
+
+                    <p style="
+                        margin: 0;
+                        font-size: 13px;
+                        color: #64748b;
+                    ">
+                        Wokwi IoT Gateway
+                    </p>
+
+                    <div style="
+                        margin-top: 15px;
+                        font-size: 12px;
+                        font-weight: 600;
+                        color: #10b981;
+                    ">
+                        ACTIVE
+                    </div>
+
+                </div>
+
+
+
+                <!-- TELEMETRY -->
+
+                <div style="
+                    border: 1px solid #e5e7eb;
+                    border-radius: 10px;
+                    padding: 20px;
+                    text-align: center;
+                    background: #f8fafc;
+                ">
+
+                    <div style="
+                        font-size: 13px;
+                        font-weight: 700;
+                        color: #64748b;
+                        margin-bottom: 10px;
+                    ">
+                        STEP 2
+                    </div>
+
+                    <h3 style="
+                        margin: 0 0 8px 0;
+                    ">
+                        Telemetry
+                    </h3>
+
+                    <p style="
+                        margin: 0;
+                        font-size: 13px;
+                        color: #64748b;
+                    ">
+                        Sensor and device data
+                    </p>
+
+                    <div style="
+                        margin-top: 15px;
+                        font-size: 12px;
+                        font-weight: 600;
+                        color: #10b981;
+                    ">
+                        RECEIVING
+                    </div>
+
+                </div>
+
+
+
+                <!-- MQTT -->
+
+                <div style="
+                    border: 1px solid #e5e7eb;
+                    border-radius: 10px;
+                    padding: 20px;
+                    text-align: center;
+                    background: #f8fafc;
+                ">
+
+                    <div style="
+                        font-size: 13px;
+                        font-weight: 700;
+                        color: #64748b;
+                        margin-bottom: 10px;
+                    ">
+                        STEP 3
+                    </div>
+
+                    <h3 style="
+                        margin: 0 0 8px 0;
+                    ">
+                        MQTT
+                    </h3>
+
+                    <p style="
+                        margin: 0;
+                        font-size: 13px;
+                        color: #64748b;
+                    ">
+                        Message transmission
+                    </p>
+
+                    <div style="
+                        margin-top: 15px;
+                        font-size: 12px;
+                        font-weight: 600;
+                        color: #10b981;
+                    ">
+                        CONNECTED
+                    </div>
+
+                </div>
+
+
+
+                <!-- EDGE GATEWAY -->
+
+                <div style="
+                    border: 1px solid #e5e7eb;
+                    border-radius: 10px;
+                    padding: 20px;
+                    text-align: center;
+                    background: #f8fafc;
+                ">
+
+                    <div style="
+                        font-size: 13px;
+                        font-weight: 700;
+                        color: #64748b;
+                        margin-bottom: 10px;
+                    ">
+                        STEP 4
+                    </div>
+
+                    <h3 style="
+                        margin: 0 0 8px 0;
+                    ">
+                        Edge Gateway
+                    </h3>
+
+                    <p style="
+                        margin: 0;
+                        font-size: 13px;
+                        color: #64748b;
+                    ">
+                        Python processing
+                    </p>
+
+                    <div style="
+                        margin-top: 15px;
+                        font-size: 12px;
+                        font-weight: 600;
+                        color: #10b981;
+                    ">
+                        ACTIVE
+                    </div>
+
+                </div>
+
+
+
+                <!-- AI -->
+
+                <div style="
+                    border: 1px solid #e5e7eb;
+                    border-radius: 10px;
+                    padding: 20px;
+                    text-align: center;
+                    background: #f8fafc;
+                ">
+
+                    <div style="
+                        font-size: 13px;
+                        font-weight: 700;
+                        color: #64748b;
+                        margin-bottom: 10px;
+                    ">
+                        STEP 5
+                    </div>
+
+                    <h3 style="
+                        margin: 0 0 8px 0;
+                    ">
+                        Random Forest
+                    </h3>
+
+                    <p style="
+                        margin: 0;
+                        font-size: 13px;
+                        color: #64748b;
+                    ">
+                        Traffic classification
+                    </p>
+
+                    <div style="
+                        margin-top: 15px;
+                        font-size: 12px;
+                        font-weight: 600;
+                        color: #10b981;
+                    ">
+                        LOADED
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             ESP32 TELEMETRY
+        ========================================== -->
+
+        <section class="content-grid">
+
+
+            <!-- SIMULATED COMPONENTS -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            ESP32 IoT Components
+                        </h3>
+
+                        <p>
+                            Components simulated inside the Wokwi ESP32 environment
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div style="padding: 5px 0;">
+
+
+                    <!-- LIGHT -->
+
+                    <div style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <div>
+
+                            <strong>
+                                Smart Light
+                            </strong>
+
+                            <div style="
+                                font-size: 12px;
+                                color: #94a3b8;
+                                margin-top: 4px;
+                            ">
+                                LED - GPIO25
+                            </div>
+
+                        </div>
+
+                        <span style="
+                            font-size: 12px;
+                            font-weight: 600;
+                            color: #10b981;
+                        ">
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- THERMOSTAT -->
+
+                    <div style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <div>
+
+                            <strong>
+                                Smart Thermostat
+                            </strong>
+
+                            <div style="
+                                font-size: 12px;
+                                color: #94a3b8;
+                                margin-top: 4px;
+                            ">
+                                DHT22 - GPIO4
+                            </div>
+
+                        </div>
+
+                        <span style="
+                            font-size: 12px;
+                            font-weight: 600;
+                            color: #10b981;
+                        ">
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- CAMERA -->
+
+                    <div style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <div>
+
+                            <strong>
+                                Smart Camera
+                            </strong>
+
+                            <div style="
+                                font-size: 12px;
+                                color: #94a3b8;
+                                margin-top: 4px;
+                            ">
+                                PIR - GPIO27
+                            </div>
+
+                        </div>
+
+                        <span style="
+                            font-size: 12px;
+                            font-weight: 600;
+                            color: #10b981;
+                        ">
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- LOCK -->
+
+                    <div style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <div>
+
+                            <strong>
+                                Smart Lock
+                            </strong>
+
+                            <div style="
+                                font-size: 12px;
+                                color: #94a3b8;
+                                margin-top: 4px;
+                            ">
+                                Servo - GPIO26
+                            </div>
+
+                        </div>
+
+                        <span style="
+                            font-size: 12px;
+                            font-weight: 600;
+                            color: #10b981;
+                        ">
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- METER -->
+
+                    <div style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 15px 0;
+                    ">
+
+                        <div>
+
+                            <strong>
+                                Smart Meter
+                            </strong>
+
+                            <div style="
+                                font-size: 12px;
+                                color: #94a3b8;
+                                margin-top: 4px;
+                            ">
+                                Potentiometer - GPIO34
+                            </div>
+
+                        </div>
+
+                        <span style="
+                            font-size: 12px;
+                            font-weight: 600;
+                            color: #10b981;
+                        ">
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MQTT DETAILS -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            MQTT Connection
+                        </h3>
+
+                        <p>
+                            Communication between Wokwi and the Edge Gateway
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div style="padding: 5px 0;">
+
+
+                    <div style="
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <span style="
+                            display: block;
+                            font-size: 12px;
+                            color: #94a3b8;
+                            margin-bottom: 5px;
+                        ">
+                            BROKER
+                        </span>
+
+                        <strong>
+                            broker.hivemq.com
+                        </strong>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <span style="
+                            display: block;
+                            font-size: 12px;
+                            color: #94a3b8;
+                            margin-bottom: 5px;
+                        ">
+                            PORT
+                        </span>
+
+                        <strong>
+                            1883
+                        </strong>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <span style="
+                            display: block;
+                            font-size: 12px;
+                            color: #94a3b8;
+                            margin-bottom: 5px;
+                        ">
+                            TOPIC
+                        </span>
+
+                        <strong style="
+                            font-size: 13px;
+                            word-break: break-word;
+                        ">
+                            edge_ai_ids/abhi_esp32_iot_data
+                        </strong>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 15px 0;
+                    ">
+
+                        <span style="
+                            display: block;
+                            font-size: 12px;
+                            color: #94a3b8;
+                            margin-bottom: 5px;
+                        ">
+                            CONNECTION STATUS
+                        </span>
+
+                        <strong style="
+                            color: #10b981;
+                        ">
+                            CONNECTED
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             CURRENT DETECTION STATUS
+        ========================================== -->
+
+        <section class="panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Current Detection Status
+                    </h3>
+
+                    <p>
+                        Latest intrusion detection state from the Edge-AI system
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+                padding: 15px 0;
+            ">
+
+
+                <!-- STATUS -->
+
+                <div style="
+                    border: 1px solid #e5e7eb;
+                    border-radius: 10px;
+                    padding: 20px;
+                ">
+
+                    <span style="
+                        display: block;
+                        font-size: 12px;
+                        color: #94a3b8;
+                        margin-bottom: 8px;
+                    ">
+                        DETECTION ENGINE
+                    </span>
+
+                    <strong>
+                        Random Forest
+                    </strong>
+
+                    <p style="
+                        font-size: 13px;
+                        color: #64748b;
+                        margin-bottom: 0;
+                    ">
+                        ML-based traffic classification
+                    </p>
+
+                </div>
+
+
+
+                <!-- CONFIDENCE -->
+
+                <div style="
+                    border: 1px solid #e5e7eb;
+                    border-radius: 10px;
+                    padding: 20px;
+                ">
+
+                    <span style="
+                        display: block;
+                        font-size: 12px;
+                        color: #94a3b8;
+                        margin-bottom: 8px;
+                    ">
+                        AVERAGE CONFIDENCE
+                    </span>
+
+                    <strong>
+                        {{ average_confidence }}%
+                    </strong>
+
+                    <p style="
+                        font-size: 13px;
+                        color: #64748b;
+                        margin-bottom: 0;
+                    ">
+                        Current logged predictions
+                    </p>
+
+                </div>
+
+
+
+                <!-- ATTACKS -->
+
+                <div style="
+                    border: 1px solid #e5e7eb;
+                    border-radius: 10px;
+                    padding: 20px;
+                ">
+
+                    <span style="
+                        display: block;
+                        font-size: 12px;
+                        color: #94a3b8;
+                        margin-bottom: 8px;
+                    ">
+                        DETECTED ATTACKS
+                    </span>
+
+                    <strong>
+                        {{ total_attacks }}
+                    </strong>
+
+                    <p style="
+                        font-size: 13px;
+                        color: #64748b;
+                        margin-bottom: 0;
+                    ">
+                        Events recorded in intrusion log
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             RECENT ALERTS
+        ========================================== -->
+
+        <section class="panel alerts-panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Recent Intrusion Activity
+                    </h3>
+
+                    <p>
+                        Latest attack events detected by the Edge-AI gateway
+                    </p>
+
+                </div>
+
+
+                <span class="alert-count">
+                    {{ total_attacks }} alerts
+                </span>
+
+            </div>
+
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                TIME
+                            </th>
+
+                            <th>
+                                DEVICE
+                            </th>
+
+                            <th>
+                                PACKET SIZE
+                            </th>
+
+                            <th>
+                                PACKETS/SEC
+                            </th>
+
+                            <th>
+                                CONNECTIONS
+                            </th>
+
+                            <th>
+                                PROTOCOL
+                            </th>
+
+                            <th>
+                                CONFIDENCE
+                            </th>
+
+                            <th>
+                                STATUS
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                    {% for alert in recent_alerts %}
+
+                        <tr>
+
+                            <td>
+                                {{ alert.timestamp }}
+                            </td>
+
+
+                            <td>
+
+                                <strong>
+                                    {{ alert.device }}
+                                </strong>
+
+                            </td>
+
+
+                            <td>
+                                {{ alert.packet_size }} bytes
+                            </td>
+
+
+                            <td>
+                                {{ alert.packets_per_second }}
+                            </td>
+
+
+                            <td>
+                                {{ alert.connections }}
+                            </td>
+
+
+                            <td>
+
+                                <span class="protocol">
+                                    {{ alert.protocol }}
+                                </span>
+
+                            </td>
+
+
+                            <td>
+                                {{ alert.confidence }}%
+                            </td>
+
+
+                            <td>
+
+                                <span class="attack-status">
+                                    ATTACK
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             MONITORING EXPLANATION
+        ========================================== -->
+
+        <section class="panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Monitoring Process
+                    </h3>
+
+                    <p>
+                        How data moves through the Edge-AI intrusion detection system
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div style="
+                padding: 5px 0;
+                line-height: 1.8;
+            ">
+
+
+                <p>
+                    The Wokwi environment simulates an ESP32 IoT gateway
+                    containing five IoT components: Smart Light,
+                    Smart Thermostat, Smart Camera, Smart Lock and Smart Meter.
+                </p>
+
+
+                <p>
+                    The ESP32 generates simulated IoT telemetry and
+                    publishes the data using the MQTT protocol.
+                </p>
+
+
+                <p>
+                    The Python Edge-AI gateway subscribes to the MQTT
+                    topic and receives the telemetry generated by the
+                    simulated ESP32.
+                </p>
+
+
+                <p>
+                    The received telemetry is converted into the feature
+                    format expected by the trained Random Forest model.
+                </p>
+
+
+                <p>
+                    The model classifies the simulated network condition
+                    as NORMAL or ATTACK.
+                </p>
+
+
+                <p>
+                    When an attack is detected, the event is written to
+                    the intrusion log and displayed on the monitoring
+                    interface.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             FOOTER
+        ========================================== -->
+
+        <footer>
+
+            <span>
+                Edge-AI Based Intrusion Detection System for IoT Networks
+            </span>
+
+
+            <span>
+                ESP32 Simulation
+                &nbsp; | &nbsp;
+                MQTT
+                &nbsp; | &nbsp;
+                Random Forest
+                &nbsp; | &nbsp;
+                Monitoring: ACTIVE
+            </span>
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

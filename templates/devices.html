@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>IoT Devices - Edge-AI IoT IDS</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="dashboard">
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                AI
+            </div>
+
+            <div>
+
+                <h2>EDGE-AI</h2>
+
+                <span>IoT SECURITY</span>
+
+            </div>
+
+        </div>
+
+
+
+        <nav>
+
+            <a href="/">
+                Dashboard
+            </a>
+
+            <a href="/monitoring">
+                Monitoring
+            </a>
+
+            <a href="/devices"
+               class="active">
+                IoT Devices
+            </a>
+
+            <a href="/logs">
+                Intrusion Logs
+            </a>
+
+            <a href="/analytics">
+                Analytics
+            </a>
+
+            <a href="/model">
+                Model Performance
+            </a>
+
+        </nav>
+
+
+
+        <!-- SYSTEM STATUS -->
+
+        <div class="system-box">
+
+            <h4>
+                SYSTEM STATUS
+            </h4>
+
+
+            <p>
+
+                <span class="status-dot"></span>
+
+                Edge Gateway
+
+                <strong>
+                    ACTIVE
+                </strong>
+
+            </p>
+
+
+            <p>
+
+                <span class="status-dot"></span>
+
+                ML Model
+
+                <strong>
+                    LOADED
+                </strong>
+
+            </p>
+
+
+            <p>
+
+                <span class="status-dot"></span>
+
+                Alert Logging
+
+                <strong>
+                    ACTIVE
+                </strong>
+
+            </p>
+
+        </div>
+
+
+
+        <div class="sidebar-bottom">
+
+            <p>
+                Edge-AI IDS
+            </p>
+
+            <small>
+                IoT Network Security
+            </small>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    IoT Devices
+                </h1>
+
+                <p>
+                    Simulated IoT components connected to the ESP32 gateway
+                </p>
+
+            </div>
+
+
+            <div class="gateway-status">
+
+                <span class="status-dot"></span>
+
+                Gateway Active
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================================
+             SUMMARY CARDS
+        ========================================== -->
+
+        <section class="stats">
+
+
+            <div class="stat-card blue">
+
+                <div>
+
+                    <p>
+                        ESP32 GATEWAY
+                    </p>
+
+                    <h2>
+                        1
+                    </h2>
+
+                    <span>
+                        Simulated IoT gateway
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card green">
+
+                <div>
+
+                    <p>
+                        IoT COMPONENTS
+                    </p>
+
+                    <h2>
+                        5
+                    </h2>
+
+                    <span>
+                        Simulated devices
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card purple">
+
+                <div>
+
+                    <p>
+                        MQTT
+                    </p>
+
+                    <h2>
+                        CONNECTED
+                    </h2>
+
+                    <span>
+                        Telemetry communication
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card red">
+
+                <div>
+
+                    <p>
+                        GATEWAY STATUS
+                    </p>
+
+                    <h2>
+                        ACTIVE
+                    </h2>
+
+                    <span>
+                        Wokwi simulation
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             ESP32 GATEWAY
+        ========================================== -->
+
+        <section class="panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        ESP32 IoT Gateway
+                    </h3>
+
+                    <p>
+                        Central simulated gateway containing five IoT components
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- GATEWAY INFORMATION -->
+
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 15px;
+                padding: 10px 0 25px 0;
+            ">
+
+
+                <div style="
+                    border: 1px solid #e5e7eb;
+                    border-radius: 10px;
+                    padding: 18px;
+                    background: #f8fafc;
+                ">
+
+                    <span style="
+                        display: block;
+                        font-size: 11px;
+                        color: #94a3b8;
+                        margin-bottom: 7px;
+                        font-weight: 600;
+                    ">
+                        PLATFORM
+                    </span>
+
+                    <strong>
+                        ESP32
+                    </strong>
+
+                </div>
+
+
+
+                <div style="
+                    border: 1px solid #e5e7eb;
+                    border-radius: 10px;
+                    padding: 18px;
+                    background: #f8fafc;
+                ">
+
+                    <span style="
+                        display: block;
+                        font-size: 11px;
+                        color: #94a3b8;
+                        margin-bottom: 7px;
+                        font-weight: 600;
+                    ">
+                        SIMULATOR
+                    </span>
+
+                    <strong>
+                        Wokwi
+                    </strong>
+
+                </div>
+
+
+
+                <div style="
+                    border: 1px solid #e5e7eb;
+                    border-radius: 10px;
+                    padding: 18px;
+                    background: #f8fafc;
+                ">
+
+                    <span style="
+                        display: block;
+                        font-size: 11px;
+                        color: #94a3b8;
+                        margin-bottom: 7px;
+                        font-weight: 600;
+                    ">
+                        COMMUNICATION
+                    </span>
+
+                    <strong>
+                        MQTT
+                    </strong>
+
+                </div>
+
+
+
+                <div style="
+                    border: 1px solid #e5e7eb;
+                    border-radius: 10px;
+                    padding: 18px;
+                    background: #f8fafc;
+                ">
+
+                    <span style="
+                        display: block;
+                        font-size: 11px;
+                        color: #94a3b8;
+                        margin-bottom: 7px;
+                        font-weight: 600;
+                    ">
+                        STATUS
+                    </span>
+
+                    <strong style="
+                        color: #10b981;
+                    ">
+                        ACTIVE
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================================
+                 COMPONENT TABLE
+            ========================================== -->
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                COMPONENT
+                            </th>
+
+                            <th>
+                                SIMULATION
+                            </th>
+
+                            <th>
+                                GPIO
+                            </th>
+
+                            <th>
+                                FUNCTION
+                            </th>
+
+                            <th>
+                                STATUS
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        <!-- SMART LIGHT -->
+
+                        <tr>
+
+                            <td>
+
+                                <strong>
+                                    Smart Light
+                                </strong>
+
+                            </td>
+
+                            <td>
+                                LED
+                            </td>
+
+                            <td>
+                                GPIO25
+                            </td>
+
+                            <td>
+                                Lighting control
+                            </td>
+
+                            <td>
+
+                                <span style="
+                                    color: #10b981;
+                                    font-weight: 600;
+                                ">
+                                    ACTIVE
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <!-- SMART THERMOSTAT -->
+
+                        <tr>
+
+                            <td>
+
+                                <strong>
+                                    Smart Thermostat
+                                </strong>
+
+                            </td>
+
+                            <td>
+                                DHT22
+                            </td>
+
+                            <td>
+                                GPIO4
+                            </td>
+
+                            <td>
+                                Temperature and humidity
+                            </td>
+
+                            <td>
+
+                                <span style="
+                                    color: #10b981;
+                                    font-weight: 600;
+                                ">
+                                    ACTIVE
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <!-- SMART CAMERA -->
+
+                        <tr>
+
+                            <td>
+
+                                <strong>
+                                    Smart Camera
+                                </strong>
+
+                            </td>
+
+                            <td>
+                                PIR
+                            </td>
+
+                            <td>
+                                GPIO27
+                            </td>
+
+                            <td>
+                                Motion detection
+                            </td>
+
+                            <td>
+
+                                <span style="
+                                    color: #10b981;
+                                    font-weight: 600;
+                                ">
+                                    ACTIVE
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <!-- SMART LOCK -->
+
+                        <tr>
+
+                            <td>
+
+                                <strong>
+                                    Smart Lock
+                                </strong>
+
+                            </td>
+
+                            <td>
+                                Servo
+                            </td>
+
+                            <td>
+                                GPIO26
+                            </td>
+
+                            <td>
+                                Lock and unlock control
+                            </td>
+
+                            <td>
+
+                                <span style="
+                                    color: #10b981;
+                                    font-weight: 600;
+                                ">
+                                    ACTIVE
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <!-- SMART METER -->
+
+                        <tr>
+
+                            <td>
+
+                                <strong>
+                                    Smart Meter
+                                </strong>
+
+                            </td>
+
+                            <td>
+                                Potentiometer
+                            </td>
+
+                            <td>
+                                GPIO34
+                            </td>
+
+                            <td>
+                                Analog measurement
+                            </td>
+
+                            <td>
+
+                                <span style="
+                                    color: #10b981;
+                                    font-weight: 600;
+                                ">
+                                    ACTIVE
+                            </span>
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             COMPONENT DESCRIPTION
+        ========================================== -->
+
+        <section class="content-grid">
+
+
+            <!-- DEVICE FUNCTIONS -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Component Functions
+                        </h3>
+
+                        <p>
+                            Role of each simulated IoT component
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div style="padding: 5px 0;">
+
+
+                    <div style="
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <strong>
+                            Smart Light
+                        </strong>
+
+                        <p style="
+                            margin: 5px 0 0 0;
+                            font-size: 13px;
+                            color: #64748b;
+                        ">
+                            Represents an IoT lighting actuator using an LED.
+                        </p>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <strong>
+                            Smart Thermostat
+                        </strong>
+
+                        <p style="
+                            margin: 5px 0 0 0;
+                            font-size: 13px;
+                            color: #64748b;
+                        ">
+                            Represents environmental monitoring using the DHT22.
+                        </p>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <strong>
+                            Smart Camera
+                        </strong>
+
+                        <p style="
+                            margin: 5px 0 0 0;
+                            font-size: 13px;
+                            color: #64748b;
+                        ">
+                            Represents motion detection using the PIR sensor.
+                        </p>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <strong>
+                            Smart Lock
+                        </strong>
+
+                        <p style="
+                            margin: 5px 0 0 0;
+                            font-size: 13px;
+                            color: #64748b;
+                        ">
+                            Represents an IoT access-control actuator using a servo.
+                        </p>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 15px 0;
+                    ">
+
+                        <strong>
+                            Smart Meter
+                        </strong>
+
+                        <p style="
+                            margin: 5px 0 0 0;
+                            font-size: 13px;
+                            color: #64748b;
+                        ">
+                            Represents analog measurement using a potentiometer.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CONNECTION -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Gateway Connection
+                        </h3>
+
+                        <p>
+                            Communication configuration
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div style="padding: 5px 0;">
+
+
+                    <div style="
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <span style="
+                            display: block;
+                            font-size: 11px;
+                            color: #94a3b8;
+                            margin-bottom: 6px;
+                        ">
+                            MQTT BROKER
+                        </span>
+
+                        <strong>
+                            broker.hivemq.com
+                        </strong>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <span style="
+                            display: block;
+                            font-size: 11px;
+                            color: #94a3b8;
+                            margin-bottom: 6px;
+                        ">
+                            MQTT PORT
+                        </span>
+
+                        <strong>
+                            1883
+                        </strong>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 15px 0;
+                        border-bottom: 1px solid #f0f2f5;
+                    ">
+
+                        <span style="
+                            display: block;
+                            font-size: 11px;
+                            color: #94a3b8;
+                            margin-bottom: 6px;
+                        ">
+                            DATA TOPIC
+                        </span>
+
+                        <strong style="
+                            font-size: 13px;
+                            word-break: break-word;
+                        ">
+                            edge_ai_ids/abhi_esp32_iot_data
+                        </strong>
+
+                    </div>
+
+
+
+                    <div style="
+                        padding: 15px 0;
+                    ">
+
+                        <span style="
+                            display: block;
+                            font-size: 11px;
+                            color: #94a3b8;
+                            margin-bottom: 6px;
+                        ">
+                            CONNECTION
+                        </span>
+
+                        <strong style="
+                            color: #10b981;
+                        ">
+                            CONNECTED
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             ARCHITECTURE
+        ========================================== -->
+
+        <section class="panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        IoT Gateway Architecture
+                    </h3>
+
+                    <p>
+                        Relationship between the simulated components and the Edge-AI system
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div style="
+                padding: 15px 0;
+            ">
+
+
+                <div style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 15px;
+                    flex-wrap: wrap;
+                ">
+
+
+                    <div style="
+                        padding: 18px 25px;
+                        border: 1px solid #dbe3ee;
+                        border-radius: 10px;
+                        text-align: center;
+                        background: #f8fafc;
+                    ">
+
+                        <strong>
+                            Smart Light
+                        </strong>
+
+                        <div style="
+                            font-size: 12px;
+                            color: #64748b;
+                            margin-top: 5px;
+                        ">
+                            LED
+                        </div>
+
+                    </div>
+
+
+
+                    <div style="
+                        color: #94a3b8;
+                        font-size: 20px;
+                    ">
+                        +
+                    </div>
+
+
+
+                    <div style="
+                        padding: 18px 25px;
+                        border: 1px solid #dbe3ee;
+                        border-radius: 10px;
+                        text-align: center;
+                        background: #f8fafc;
+                    ">
+
+                        <strong>
+                            Smart Thermostat
+                        </strong>
+
+                        <div style="
+                            font-size: 12px;
+                            color: #64748b;
+                            margin-top: 5px;
+                        ">
+                            DHT22
+                        </div>
+
+                    </div>
+
+
+
+                    <div style="
+                        color: #94a3b8;
+                        font-size: 20px;
+                    ">
+                        +
+                    </div>
+
+
+
+                    <div style="
+                        padding: 18px 25px;
+                        border: 1px solid #dbe3ee;
+                        border-radius: 10px;
+                        text-align: center;
+                        background: #f8fafc;
+                    ">
+
+                        <strong>
+                            Smart Camera
+                        </strong>
+
+                        <div style="
+                            font-size: 12px;
+                            color: #64748b;
+                            margin-top: 5px;
+                        ">
+                            PIR
+                        </div>
+
+                    </div>
+
+
+
+                    <div style="
+                        color: #94a3b8;
+                        font-size: 20px;
+                    ">
+                        +
+                    </div>
+
+
+
+                    <div style="
+                        padding: 18px 25px;
+                        border: 1px solid #dbe3ee;
+                        border-radius: 10px;
+                        text-align: center;
+                        background: #f8fafc;
+                    ">
+
+                        <strong>
+                            Smart Lock
+                        </strong>
+
+                        <div style="
+                            font-size: 12px;
+                            color: #64748b;
+                            margin-top: 5px;
+                        ">
+                            Servo
+                        </div>
+
+                    </div>
+
+
+
+                    <div style="
+                        color: #94a3b8;
+                        font-size: 20px;
+                    ">
+                        +
+                    </div>
+
+
+
+                    <div style="
+                        padding: 18px 25px;
+                        border: 1px solid #dbe3ee;
+                        border-radius: 10px;
+                        text-align: center;
+                        background: #f8fafc;
+                    ">
+
+                        <strong>
+                            Smart Meter
+                        </strong>
+
+                        <div style="
+                            font-size: 12px;
+                            color: #64748b;
+                            margin-top: 5px;
+                        ">
+                            POT
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div style="
+                    text-align: center;
+                    margin: 25px 0;
+                    color: #94a3b8;
+                    font-size: 20px;
+                ">
+                    |
+                    <br>
+                    v
+                </div>
+
+
+
+                <div style="
+                    max-width: 300px;
+                    margin: 0 auto;
+                    padding: 20px;
+                    border: 2px solid #dbe3ee;
+                    border-radius: 12px;
+                    text-align: center;
+                    background: #f8fafc;
+                ">
+
+                    <strong style="
+                        font-size: 17px;
+                    ">
+                        ESP32 IoT Gateway
+                    </strong>
+
+                    <p style="
+                        margin: 7px 0 0 0;
+                        font-size: 13px;
+                        color: #64748b;
+                    ">
+                        Wokwi Simulation
+                    </p>
+
+                </div>
+
+
+
+                <div style="
+                    text-align: center;
+                    margin: 25px 0;
+                    color: #94a3b8;
+                    font-size: 20px;
+                ">
+                    |
+                    <br>
+                    v
+                </div>
+
+
+
+                <div style="
+                    max-width: 300px;
+                    margin: 0 auto;
+                    padding: 20px;
+                    border: 2px solid #dbe3ee;
+                    border-radius: 12px;
+                    text-align: center;
+                    background: #f8fafc;
+                ">
+
+                    <strong style="
+                        font-size: 17px;
+                    ">
+                        MQTT
+                    </strong>
+
+                    <p style="
+                        margin: 7px 0 0 0;
+                        font-size: 13px;
+                        color: #64748b;
+                    ">
+                        IoT Data Transmission
+                    </p>
+
+                </div>
+
+
+
+                <div style="
+                    text-align: center;
+                    margin: 25px 0;
+                    color: #94a3b8;
+                    font-size: 20px;
+                ">
+                    |
+                    <br>
+                    v
+                </div>
+
+
+
+                <div style="
+                    max-width: 300px;
+                    margin: 0 auto;
+                    padding: 20px;
+                    border: 2px solid #dbe3ee;
+                    border-radius: 12px;
+                    text-align: center;
+                    background: #f8fafc;
+                ">
+
+                    <strong style="
+                        font-size: 17px;
+                    ">
+                        Edge-AI Gateway
+                    </strong>
+
+                    <p style="
+                        margin: 7px 0 0 0;
+                        font-size: 13px;
+                        color: #64748b;
+                    ">
+                        Python + Random Forest
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             FOOTER
+        ========================================== -->
+
+        <footer>
+
+            <span>
+                Edge-AI Based Intrusion Detection System for IoT Networks
+            </span>
+
+            <span>
+                ESP32 Simulation
+                &nbsp; | &nbsp;
+                MQTT
+                &nbsp; | &nbsp;
+                Random Forest
+                &nbsp; | &nbsp;
+                Gateway: ACTIVE
+            </span>
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

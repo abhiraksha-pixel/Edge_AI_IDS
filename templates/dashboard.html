@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edge-AI IoT Intrusion Detection</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                AI
+            </div>
+
+            <div>
+                <h2>EDGE-AI</h2>
+                <span>IoT SECURITY</span>
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="/" class="active">
+                Dashboard
+            </a>
+
+            <a href="/monitoring">
+                Monitoring
+            </a>
+
+            <a href="/devices">
+                IoT Devices
+            </a>
+
+            <a href="/logs">
+                Intrusion Logs
+            </a>
+
+            <a href="/analytics">
+                Analytics
+            </a>
+
+            <a href="/model">
+                Model Performance
+            </a>
+
+        </nav>
+
+
+        <!-- SYSTEM STATUS -->
+
+        <div class="system-box">
+
+            <h4>SYSTEM STATUS</h4>
+
+            <p>
+                <span class="status-dot"></span>
+                Edge Gateway
+                <strong>ACTIVE</strong>
+            </p>
+
+            <p>
+                <span class="status-dot"></span>
+                ML Model
+                <strong>LOADED</strong>
+            </p>
+
+            <p>
+                <span class="status-dot"></span>
+                Alert Logging
+                <strong>ACTIVE</strong>
+            </p>
+
+        </div>
+
+
+        <div class="sidebar-bottom">
+
+            <p>
+                Edge-AI IDS
+            </p>
+
+            <small>
+                IoT Network Security
+            </small>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Edge-AI IoT Intrusion Detection Dashboard
+                </h1>
+
+                <p>
+                    Real-time Edge-AI monitoring of the simulated ESP32 IoT Gateway
+                </p>
+
+            </div>
+
+
+            <div class="gateway-status">
+
+                <span class="status-dot"></span>
+
+                Gateway Active
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================
+             STATISTICS
+        ========================== -->
+
+        <section class="stats">
+
+
+            <!-- TOTAL INTRUSIONS -->
+
+            <div class="stat-card blue">
+
+                <div>
+
+                    <p>
+                        TOTAL INTRUSIONS
+                    </p>
+
+                    <h2>
+                        {{ total_attacks }}
+                    </h2>
+
+                    <span>
+                        Detected attack events
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- THREAT STATUS -->
+
+            <div class="stat-card red">
+
+                <div>
+
+                    <p>
+                        THREAT STATUS
+                    </p>
+
+
+                    {% if total_attacks > 0 %}
+
+                        <h2>
+                            ALERT
+                        </h2>
+
+                        <span>
+                            Intrusions detected
+                        </span>
+
+                    {% else %}
+
+                        <h2>
+                            NORMAL
+                        </h2>
+
+                        <span>
+                            No intrusions detected
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ML CONFIDENCE -->
+
+            <div class="stat-card green">
+
+                <div>
+
+                    <p>
+                        ML CONFIDENCE
+                    </p>
+
+                    <h2>
+                        {{ average_confidence }}%
+                    </h2>
+
+                    <span>
+                        Average prediction confidence
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MONITORING -->
+
+            <div class="stat-card purple">
+
+                <div>
+
+                    <p>
+                        MONITORING
+                    </p>
+
+                    <h2>
+                        LIVE
+                    </h2>
+
+                    <span>
+                        ESP32 gateway monitoring
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             ESP32 GATEWAY + SECURITY
+        ========================== -->
+
+        <section class="content-grid">
+
+
+            <!-- ESP32 GATEWAY -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            ESP32 IoT Gateway
+                        </h3>
+
+                        <p>
+                            Five simulated IoT components connected to one ESP32 gateway
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- COMPONENT HEADER -->
+
+                <div style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 100px;
+                    gap: 20px;
+                    padding: 12px 0;
+                    border-bottom: 1px solid #e5e7eb;
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #94a3b8;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                ">
+
+                    <div>
+                        Component
+                    </div>
+
+                    <div>
+                        Hardware Simulation
+                    </div>
+
+                    <div style="text-align: right;">
+                        Status
+                    </div>
+
+                </div>
+
+
+
+                <!-- SMART LIGHT -->
+
+                <div style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 100px;
+                    gap: 20px;
+                    align-items: center;
+                    padding: 17px 0;
+                    border-bottom: 1px solid #f0f2f5;
+                ">
+
+                    <div>
+
+                        <strong>
+                            Smart Light
+                        </strong>
+
+                    </div>
+
+                    <div>
+                        LED - GPIO25
+                    </div>
+
+                    <div style="
+                        text-align: right;
+                        font-weight: 600;
+                        color: #10b981;
+                    ">
+                        ACTIVE
+                    </div>
+
+                </div>
+
+
+
+                <!-- SMART THERMOSTAT -->
+
+                <div style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 100px;
+                    gap: 20px;
+                    align-items: center;
+                    padding: 17px 0;
+                    border-bottom: 1px solid #f0f2f5;
+                ">
+
+                    <div>
+
+                        <strong>
+                            Smart Thermostat
+                        </strong>
+
+                    </div>
+
+                    <div>
+                        DHT22 - GPIO4
+                    </div>
+
+                    <div style="
+                        text-align: right;
+                        font-weight: 600;
+                        color: #10b981;
+                    ">
+                        ACTIVE
+                    </div>
+
+                </div>
+
+
+
+                <!-- SMART CAMERA -->
+
+                <div style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 100px;
+                    gap: 20px;
+                    align-items: center;
+                    padding: 17px 0;
+                    border-bottom: 1px solid #f0f2f5;
+                ">
+
+                    <div>
+
+                        <strong>
+                            Smart Camera
+                        </strong>
+
+                    </div>
+
+                    <div>
+                        PIR - GPIO27
+                    </div>
+
+                    <div style="
+                        text-align: right;
+                        font-weight: 600;
+                        color: #10b981;
+                    ">
+                        ACTIVE
+                    </div>
+
+                </div>
+
+
+
+                <!-- SMART LOCK -->
+
+                <div style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 100px;
+                    gap: 20px;
+                    align-items: center;
+                    padding: 17px 0;
+                    border-bottom: 1px solid #f0f2f5;
+                ">
+
+                    <div>
+
+                        <strong>
+                            Smart Lock
+                        </strong>
+
+                    </div>
+
+                    <div>
+                        Servo - GPIO26
+                    </div>
+
+                    <div style="
+                        text-align: right;
+                        font-weight: 600;
+                        color: #10b981;
+                    ">
+                        ACTIVE
+                    </div>
+
+                </div>
+
+
+
+                <!-- SMART METER -->
+
+                <div style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 100px;
+                    gap: 20px;
+                    align-items: center;
+                    padding: 17px 0;
+                ">
+
+                    <div>
+
+                        <strong>
+                            Smart Meter
+                        </strong>
+
+                    </div>
+
+                    <div>
+                        Potentiometer - GPIO34
+                    </div>
+
+                    <div style="
+                        text-align: right;
+                        font-weight: 600;
+                        color: #10b981;
+                    ">
+                        ACTIVE
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 SECURITY OVERVIEW
+            ========================== -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Security Overview
+                        </h3>
+
+                        <p>
+                            Current Edge-AI system condition
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="security-overview">
+
+
+                    <!-- SECURITY CIRCLE -->
+
+                    <div class="security-circle">
+
+                        <div>
+
+                            <strong>
+                                {{ total_attacks }}
+                            </strong>
+
+                            <span>
+                                Attacks
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- SECURITY INFORMATION -->
+
+                    <div class="security-info">
+
+
+                        <div>
+
+                            <span class="legend red-dot"></span>
+
+                            Intrusions
+
+                            <strong>
+                                {{ total_attacks }}
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span class="legend green-dot"></span>
+
+                            ESP32 Gateway
+
+                            <strong>
+                                ACTIVE
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span class="legend blue-dot"></span>
+
+                            AI Model
+
+                            <strong>
+                                RANDOM FOREST
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span class="legend green-dot"></span>
+
+                            MQTT
+
+                            <strong>
+                                CONNECTED
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             IOT DATA FLOW
+        ========================== -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        IoT Data Flow
+                    </h3>
+
+                    <p>
+                        Data path from the simulated ESP32 circuit to the Edge-AI intrusion detection system
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div style="padding: 10px 0;">
+
+
+                <!-- STEP 1 -->
+
+                <div class="bar-row">
+
+                    <div class="bar-label">
+                        1. ESP32 IoT Circuit
+                    </div>
+
+                    <div class="bar-container">
+
+                        <div class="bar"
+                             style="--bar-width: 100%;">
+                        </div>
+
+                    </div>
+
+                    <div class="bar-value">
+                        ACTIVE
+                    </div>
+
+                </div>
+
+
+
+                <!-- STEP 2 -->
+
+                <div class="bar-row">
+
+                    <div class="bar-label">
+                        2. IoT Device Data
+                    </div>
+
+                    <div class="bar-container">
+
+                        <div class="bar"
+                             style="--bar-width: 100%;">
+                        </div>
+
+                    </div>
+
+                    <div class="bar-value">
+                        DATA
+                    </div>
+
+                </div>
+
+
+
+                <!-- STEP 3 -->
+
+                <div class="bar-row">
+
+                    <div class="bar-label">
+                        3. MQTT Transmission
+                    </div>
+
+                    <div class="bar-container">
+
+                        <div class="bar"
+                             style="--bar-width: 100%;">
+                        </div>
+
+                    </div>
+
+                    <div class="bar-value">
+                        MQTT
+                    </div>
+
+                </div>
+
+
+
+                <!-- STEP 4 -->
+
+                <div class="bar-row">
+
+                    <div class="bar-label">
+                        4. Edge-AI Gateway
+                    </div>
+
+                    <div class="bar-container">
+
+                        <div class="bar"
+                             style="--bar-width: 100%;">
+                        </div>
+
+                    </div>
+
+                    <div class="bar-value">
+                        ACTIVE
+                    </div>
+
+                </div>
+
+
+
+                <!-- STEP 5 -->
+
+                <div class="bar-row">
+
+                    <div class="bar-label">
+                        5. Random Forest Model
+                    </div>
+
+                    <div class="bar-container">
+
+                        <div class="bar"
+                             style="--bar-width: 100%;">
+                        </div>
+
+                    </div>
+
+                    <div class="bar-value">
+                        ML
+                    </div>
+
+                </div>
+
+
+
+                <!-- STEP 6 -->
+
+                <div class="bar-row">
+
+                    <div class="bar-label">
+                        6. Detection Result
+                    </div>
+
+                    <div class="bar-container">
+
+                        <div class="bar"
+                             style="--bar-width: 100%;">
+                        </div>
+
+                    </div>
+
+                    <div class="bar-value">
+                        NORMAL / ATTACK
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             RECENT INTRUSION ALERTS
+        ========================== -->
+
+        <section class="panel alerts-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Recent Intrusion Alerts
+                    </h3>
+
+                    <p>
+                        Latest threats detected from the simulated ESP32 IoT Gateway
+                    </p>
+
+                </div>
+
+
+                <span class="alert-count">
+                    {{ total_attacks }} alerts
+                </span>
+
+            </div>
+
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                TIME
+                            </th>
+
+                            <th>
+                                DEVICE
+                            </th>
+
+                            <th>
+                                PACKET SIZE
+                            </th>
+
+                            <th>
+                                PACKETS/SEC
+                            </th>
+
+                            <th>
+                                CONNECTIONS
+                            </th>
+
+                            <th>
+                                PROTOCOL
+                            </th>
+
+                            <th>
+                                CONFIDENCE
+                            </th>
+
+                            <th>
+                                STATUS
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                    {% for alert in recent_alerts %}
+
+                        <tr>
+
+                            <td>
+                                {{ alert.timestamp }}
+                            </td>
+
+
+                            <td>
+                                <strong>
+                                    {{ alert.device }}
+                                </strong>
+                            </td>
+
+
+                            <td>
+                                {{ alert.packet_size }} bytes
+                            </td>
+
+
+                            <td>
+                                {{ alert.packets_per_second }}
+                            </td>
+
+
+                            <td>
+                                {{ alert.connections }}
+                            </td>
+
+
+                            <td>
+
+                                <span class="protocol">
+                                    {{ alert.protocol }}
+                                </span>
+
+                            </td>
+
+
+                            <td>
+                                {{ alert.confidence }}%
+                            </td>
+
+
+                            <td>
+
+                                <span class="attack-status">
+                                    ATTACK
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SYSTEM DESCRIPTION
+        ========================== -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        How the System Works
+                    </h3>
+
+                    <p>
+                        Edge-AI intrusion detection workflow
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div style="
+                padding: 10px 0;
+                line-height: 1.8;
+            ">
+
+
+                <p>
+                    The ESP32 acts as the central simulated IoT gateway
+                    for the Wokwi environment.
+                </p>
+
+
+                <p>
+                    The LED represents the Smart Light.
+                    The DHT22 represents the Smart Thermostat.
+                    The PIR sensor represents the Smart Camera.
+                    The Servo represents the Smart Lock.
+                    The potentiometer represents the Smart Meter.
+                </p>
+
+
+                <p>
+                    The ESP32 publishes IoT telemetry through MQTT
+                    to the Edge-AI gateway.
+                </p>
+
+
+                <p>
+                    The Edge-AI gateway receives the MQTT data and
+                    converts the telemetry into the feature format
+                    required by the Random Forest model.
+                </p>
+
+
+                <p>
+                    The Random Forest model classifies the simulated
+                    traffic as NORMAL or ATTACK.
+                </p>
+
+
+                <p>
+                    Detected attacks are stored in the intrusion log
+                    and displayed on the dashboard.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             FOOTER
+        ========================== -->
+
+        <footer>
+
+            <span>
+                Edge-AI Based Intrusion Detection System for IoT Networks
+            </span>
+
+
+            <span>
+                ESP32 Simulation
+                &nbsp; | &nbsp;
+                MQTT
+                &nbsp; | &nbsp;
+                Random Forest
+                &nbsp; | &nbsp;
+                Logging: ACTIVE
+            </span>
+
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+</html>
